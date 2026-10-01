@@ -603,11 +603,11 @@
     .cost-band { background: var(--bg); }
     .cost-summary-card {
       background: var(--ink); color: #fff; border: var(--line); border-radius: var(--r-md);
-      box-shadow: var(--sh-md); padding: 18px 24px; margin-bottom: 24px;
+      box-shadow: var(--sh-md); padding: 18px 24px; margin-bottom: 22px;
       display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
     }
     .cost-summary-math {
-      font-family: 'Space Grotesk', 'Bai Jamjuree', sans-serif; font-size: clamp(17px, 1.8vw, 22px); font-weight: 700;
+      font-family: 'Space Grotesk', 'Bai Jamjuree', sans-serif; font-size: clamp(16px, 1.7vw, 21px); font-weight: 700;
       color: var(--lime); letter-spacing: 0.02em; display: flex; align-items: center; gap: 10px;
     }
     .cost-summary-badge {
@@ -615,72 +615,39 @@
       font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px;
       letter-spacing: 0.04em;
     }
-
-    .cost-rows-layout {
-      display: flex; flex-direction: column; gap: 18px;
+    .cost-cards-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
     }
-    .cost-row-item {
-      display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: stretch;
+    @media (max-width: 800px) { .cost-cards-grid { grid-template-columns: 1fr; } }
+    .cost-card {
+      background: #fff; border: var(--line); border-radius: var(--r-md);
+      box-shadow: var(--sh-md); padding: 26px 24px; display: flex; flex-direction: column;
+      justify-content: space-between; min-height: 235px;
+      transition: transform .25s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow .25s;
     }
-    @media (max-width: 768px) {
-      .cost-row-item { grid-template-columns: 1fr; gap: 12px; }
+    .cost-card:hover { transform: translate(-3px, -5px); box-shadow: 11px 13px 0 var(--ink); }
+    .cost-card.price { border-top: 8px solid var(--lime); background: #fbfded; }
+    .cost-card.monthly { border-top: 8px solid var(--coral); background: #fff8f5; }
+    .cost-card.initial { border-top: 8px solid var(--cyan); background: #f4fdfe; }
+    .cost-card-status {
+      display: inline-flex; align-items: center; justify-content: center; width: fit-content;
+      font-family: 'Space Grotesk', 'Bai Jamjuree', sans-serif; font-weight: 800;
+      font-size: clamp(16px, 1.3vw, 18.5px);
+      padding: 7px 20px; border-radius: 100px; border: 2.5px solid var(--ink);
+      margin-bottom: 14px; letter-spacing: 0.02em;
     }
-    .cost-pill-label {
-      background: #7a9a2a; color: #ffffff;
-      border: var(--line); border-radius: 20px; box-shadow: var(--sh-sm);
-      display: flex; align-items: center; justify-content: center;
-      padding: 16px 20px; text-align: center;
+    .cost-card.price .cost-card-status { background: var(--lime); color: var(--ink); }
+    .cost-card.monthly .cost-card-status { background: #ffe2dc; color: #b71c1c; }
+    .cost-card.initial .cost-card-status { background: var(--cyan); color: var(--ink); }
+    .cost-card-header {
+      font-size: clamp(30px, 2.7vw, 42px); font-weight: 800; margin-bottom: 10px; color: #111111; line-height: 1.15;
       font-family: 'Space Grotesk', 'Bai Jamjuree', sans-serif;
-      font-size: clamp(20px, 1.8vw, 25px); font-weight: 800;
-      letter-spacing: 0.02em; min-height: 82px;
-      transition: transform .2s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow .2s;
     }
-    .cost-pill-label:hover {
-      transform: translate(-2px, -3px);
-      box-shadow: 6px 7px 0 var(--ink);
+    .cost-card-header small {
+      font-size: clamp(18px, 1.4vw, 22px); font-weight: 700; color: #111111; margin-left: 6px;
     }
-    .cost-boxes-group {
-      display: grid; gap: 18px;
-    }
-    .cost-boxes-group.dual {
-      grid-template-columns: 1fr 1.35fr;
-    }
-    @media (max-width: 768px) {
-      .cost-boxes-group.dual { grid-template-columns: 1fr; gap: 12px; }
-    }
-    .cost-data-box {
-      background: #edf5d3; color: #111111;
-      border: var(--line); border-radius: 20px; box-shadow: var(--sh-sm);
-      padding: 18px 24px; display: flex; flex-direction: column;
-      justify-content: center; align-items: center; text-align: center;
-      min-height: 82px;
-      transition: transform .2s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow .2s;
-    }
-    .cost-data-box:hover {
-      transform: translate(-2px, -3px);
-      box-shadow: 6px 7px 0 var(--ink);
-      background: #f4fbdd;
-    }
-    .cost-box-value {
-      font-family: 'Space Grotesk', 'Bai Jamjuree', sans-serif;
-      font-size: clamp(23px, 2.2vw, 32px); font-weight: 800; color: #111111; line-height: 1.25;
-    }
-    .cost-box-value.text-ad {
-      font-size: clamp(19px, 1.8vw, 26px); font-weight: 700; color: #111111;
-    }
-    .cost-box-unit {
-      font-size: clamp(17px, 1.4vw, 22px); font-weight: 700; color: #222222; margin-left: 4px;
-    }
-    .cost-box-sub {
-      font-family: 'Space Grotesk', 'Bai Jamjuree', sans-serif;
-      font-size: clamp(16px, 1.3vw, 19.5px); font-weight: 700; color: #222222; margin-top: 6px;
-    }
-    .cost-box-flex {
-      display: flex; align-items: baseline; justify-content: center; gap: 12px; flex-wrap: wrap;
-    }
-    .cost-box-sub-inline {
-      font-family: 'Space Grotesk', 'Bai Jamjuree', sans-serif;
-      font-size: clamp(17px, 1.4vw, 21px); font-weight: 700; color: #222222;
+    .cost-card p {
+      font-size: clamp(17px, 1.35vw, 19.5px); font-weight: 600; color: #111111; line-height: 1.55;
     }
 
     /* ============ BREAK-EVEN ============ */
@@ -690,7 +657,7 @@
       display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
     }
     .be-formula-math {
-      font-family: 'Space Grotesk', sans-serif; font-size: clamp(16px, 1.7vw, 22px); font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif; font-size: clamp(17px, 1.8vw, 23px); font-weight: 700;
       color: var(--lime); letter-spacing: 0.02em;
     }
     .be-formula-badge {
@@ -703,27 +670,29 @@
     @media (max-width: 800px) { .be-cards-grid { grid-template-columns: 1fr; } }
     .be-card {
       background: #fff; border: var(--line); border-radius: var(--r-md);
-      box-shadow: var(--sh-md); padding: 24px 22px; display: flex; flex-direction: column;
-      justify-content: space-between; min-height: 205px;
+      box-shadow: var(--sh-md); padding: 26px 24px; display: flex; flex-direction: column;
+      justify-content: space-between; min-height: 235px;
       transition: transform .25s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow .25s;
     }
     .be-card:hover { transform: translate(-3px, -5px); box-shadow: 11px 13px 0 var(--ink); }
-    .be-card.loss { border-top: 8px solid var(--coral); }
+    .be-card.loss { border-top: 8px solid var(--coral); background: #fff8f5; }
     .be-card.breakeven { border-top: 8px solid var(--lime); background: #fbfded; }
     .be-card.profit { border-top: 8px solid var(--cyan); background: #f4fdfe; }
     .be-card-header {
-      font-size: clamp(17px, 1.45vw, 19.5px); font-weight: 700; margin-bottom: 12px; color: #111111; line-height: 1.35;
+      font-size: clamp(20px, 1.6vw, 24px); font-weight: 800; margin-bottom: 12px; color: #111111; line-height: 1.35;
+      font-family: 'Space Grotesk', 'Bai Jamjuree', sans-serif;
     }
     .be-card-status {
-      display: inline-flex; align-items: center; gap: 8px; width: fit-content;
-      font-family: 'Space Grotesk', 'Bai Jamjuree', sans-serif; font-weight: 700; font-size: 14px;
-      padding: 6px 15px; border-radius: 100px; border: 2.5px solid var(--ink);
-      margin-bottom: 14px;
+      display: inline-flex; align-items: center; justify-content: center; width: fit-content;
+      font-family: 'Space Grotesk', 'Bai Jamjuree', sans-serif; font-weight: 800;
+      font-size: clamp(16px, 1.3vw, 18.5px);
+      padding: 7px 20px; border-radius: 100px; border: 2.5px solid var(--ink);
+      margin-bottom: 14px; letter-spacing: 0.02em;
     }
     .be-card.loss .be-card-status { background: #ffe2dc; color: #b71c1c; }
     .be-card.breakeven .be-card-status { background: var(--lime); color: var(--ink); }
     .be-card.profit .be-card-status { background: var(--cyan); color: var(--ink); }
-    .be-card p { font-size: clamp(16px, 1.25vw, 17.5px); font-weight: 500; color: #1f1f1f; line-height: 1.6; }
+    .be-card p { font-size: clamp(17px, 1.35vw, 19.5px); font-weight: 600; color: #111111; line-height: 1.55; }
 
     /* ============ BREAK-EVEN 2 (RETURN PERIOD) ============ */
     .be2-band { background: var(--bg); }
@@ -1090,42 +1059,29 @@
         <div class="cost-summary-math">ต้นทุนที่ต้องจ่ายเพื่อให้ระบบดำเนินงาน</div>
         <div class="cost-summary-badge">BUDGET ARCHITECTURE</div>
       </div>
-      <div class="cost-rows-layout">
-        <!-- Row 1: รายรับ -->
-        <div class="cost-row-item reveal">
-          <div class="cost-pill-label">รายรับ</div>
-          <div class="cost-boxes-group dual">
-            <div class="cost-data-box">
-              <div class="cost-box-value">39 <span class="cost-box-unit">บาท / เดือน</span></div>
-            </div>
-            <div class="cost-data-box">
-              <div class="cost-box-value text-ad">รายได้จากค่าโฆษณาบนเว็บไซต์</div>
-            </div>
+      <div class="cost-cards-grid">
+        <div class="cost-card price reveal">
+          <div>
+            <div class="cost-card-status">รายรับ</div>
+            <div class="cost-card-header">39 <small>บาท / เดือน</small></div>
           </div>
+          <p>+ รายได้จากค่าโฆษณาบนเว็บไซต์</p>
         </div>
 
-        <!-- Row 2: ต้นทุนรายเดือน -->
-        <div class="cost-row-item reveal">
-          <div class="cost-pill-label">ต้นทุนรายเดือน</div>
-          <div class="cost-boxes-group">
-            <div class="cost-data-box">
-              <div class="cost-box-value">7,500 <span class="cost-box-unit">บาท / เดือน</span></div>
-              <div class="cost-box-sub">(เช่น ค่า SERVER, ดูแลระบบ, MARKETING)</div>
-            </div>
+        <div class="cost-card monthly reveal">
+          <div>
+            <div class="cost-card-status">ต้นทุนรายเดือน</div>
+            <div class="cost-card-header">7,500 <small>บาท / เดือน</small></div>
           </div>
+          <p>(เช่น ค่า SERVER, ดูแลระบบ, MARKETING)</p>
         </div>
 
-        <!-- Row 3: ต้นทุนตั้งต้น -->
-        <div class="cost-row-item reveal">
-          <div class="cost-pill-label">ต้นทุนตั้งต้น</div>
-          <div class="cost-boxes-group">
-            <div class="cost-data-box">
-              <div class="cost-box-flex">
-                <div class="cost-box-value">10,000 บาท</div>
-                <div class="cost-box-sub-inline">(ค่า DEV, DESIGN, ยิงแอดเปิดตัว)</div>
-              </div>
-            </div>
+        <div class="cost-card initial reveal">
+          <div>
+            <div class="cost-card-status">ต้นทุนตั้งต้น</div>
+            <div class="cost-card-header">10,000 <small>บาท</small></div>
           </div>
+          <p>(ค่า DEV, DESIGN, ยิงแอดเปิดตัว)</p>
         </div>
       </div>
     </div>
@@ -1146,21 +1102,21 @@
       <div class="be-cards-grid">
         <div class="be-card loss reveal">
           <div>
-            <div class="be-card-status">✕ ขาดทุน</div>
+            <div class="be-card-status">ขาดทุน</div>
             <div class="be-card-header">มีคนสมัครน้อยกว่า 193 คน/เดือน</div>
           </div>
           <p>รายรับจากค่าบริการยังไม่ครอบคลุมต้นทุนระบบ 7,500 บาท/เดือน</p>
         </div>
         <div class="be-card breakeven reveal">
           <div>
-            <div class="be-card-status">✓ เท่าทุน</div>
+            <div class="be-card-status">เท่าทุน</div>
             <div class="be-card-header">มีคนสมัครครบ 193 คน/เดือน</div>
           </div>
           <p>เท่าทุน (เลี้ยงระบบได้โดยไม่ต้องควักเนื้อ) จุดคุ้มทุนค่าดำเนินงาน</p>
         </div>
         <div class="be-card profit reveal">
           <div>
-            <div class="be-card-status">★ กำไรสุทธิ</div>
+            <div class="be-card-status">กำไรสุทธิ</div>
             <div class="be-card-header">มีคนสมัครเกิน 193 คนขึ้นไป</div>
           </div>
           <p>เริ่มมีกำไรสุทธิ สามารถต่อยอดพัฒนาผลิตภัณฑ์และทำการตลาดเชิงรุก</p>
